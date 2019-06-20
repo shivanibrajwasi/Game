@@ -34,31 +34,15 @@ public class Game {
 		int index = getDiceNumber();
 		int newIndex = (player.getIndex() + index) % board.size();
 		player.setIndex(newIndex);
-		Cell cell = null;
-		switch (board.get(newIndex).getName()) {
-		case "E":
-			cell = new Empty();
-			break;
-		case "H":
-			cell = new Hotel(200, 50);
-			break;
-		case "J":
-			cell = new Jail(50);
-			break;
-		case "T":
-			cell = new Threasure(100);
-			break;
-
-		}
-
-		cell.visit(player);
+		 board.get(newIndex).visit(player);
+		
 
 	}
 
 	public int getDiceNumber() {
 		Random rand = new Random();
 
-		return rand.nextInt(5);
+		return rand.nextInt(5)+1;
 
 	}
 
@@ -66,6 +50,8 @@ public class Game {
 		// TODO Auto-generated method stub
 		Game game = new Game();
 		List<Cell> l = new ArrayList<>();
+		Hotel h1=new Hotel("Hotel1",500, 50);
+		Hotel h2=new Hotel("Hotel2",500, 50);
 		l.add(new Empty());
 		l.add(new Empty());
 		l.add(new Empty());
@@ -74,7 +60,7 @@ public class Game {
 		l.add(new Jail(50));
 		l.add(new Empty());
 		l.add(new Threasure(100));
-		l.add(new Hotel(500, 50));
+		l.add(h1);
 		l.add(new Empty());
 		l.add(new Jail(50));
 		l.add(new Empty());
@@ -85,7 +71,7 @@ public class Game {
 		l.add(new Empty());
 		l.add(new Threasure(100));
 		l.add(new Empty());
-		l.add(new Hotel(500, 50));
+		l.add(h2);
 
 		Player p1 = new Player("A", 1000);
 		Player p2 = new Player("B", 1000);
@@ -102,11 +88,17 @@ public class Game {
 			for (Player player : game.players) {
 
 				game.play(player);
-				System.out.print("Name " + player.getName() + " Index " + player.getIndex() + " Money "
+				System.out.println("Name " + player.getName() + " Index " + player.getIndex() + " Money "
 						+ player.getMoney() + " Hotel " + player.hotels.size());
-				System.out.println();
+				
 			}
 		}
+		
+		System.out.println("Hotel's Information");
+		System.out.println(h1.toString());
+		System.out.println(h2.toString());
+		
+		
 	}
 
 }

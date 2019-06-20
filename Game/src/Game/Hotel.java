@@ -1,7 +1,7 @@
 package Game;
 
 public class Hotel extends Cell {
-	String name="H";
+	String name;
 	public String getName() {
 		return name;
 	}
@@ -10,8 +10,9 @@ public class Hotel extends Cell {
 	boolean isSold;
 	int price;
 	int charge;
-	public Hotel(int price, int charge) {
+	public Hotel(String name,int price, int charge) {
 		super();
+		this.name=name;
 		this.price = price;
 		this.charge = charge;
 		this.isSold=false;
@@ -35,6 +36,12 @@ public class Hotel extends Cell {
 			return false;
 	   
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Hotel [name=" + name + ", owner=" + owner.getName() + ", isSold=" + isSold + ", price=" + price + ", charge="
+				+ charge + "]";
 	}
 
 	@Override
